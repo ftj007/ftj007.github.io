@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>将 Python 当做计算器（二） &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="Python" />
+    <meta property="article:published_time" content="2017-12-20" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="将 Python 当做计算器（二）"/>
+    <meta property="og:description" content="Python学习"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./4.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="将 Python 当做计算器（二）">
+    <meta name="twitter:description" content="Python学习">
+    <meta name="twitter:url" content="./4.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>将 Python 当做计算器（二）</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2017-12-20T10:20:00+08:00">周三 20 十二月 2017</time> in <a href="./category/python.html" title="All articles in category Python">Python</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/python.html" title="All articles with Python tag">#Python</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <h1>字符串</h1>
+<p>1.Python 提供了可以通过几种不同方式表示的字符串单引号 ('...') 或双引号 ("...")
+  引号要成对出现。<br>
+  对于既有单引号又有双引号的字符串可以里面单引号外面双引号，也可以反过来里面双引号，外面单引号。<br>
+  对于多行文字可以使用三引号（'''....'''）。三引号也可以用作注释。<br>
+  print() 函数生成可读性更好的输出, 它会省去引号并且打印出转义后的特殊字符</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;spam eggs&#39;</span>  <span class="c1"># single quotes</span>
+<span class="s1">&#39;spam eggs&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;doesn</span><span class="se">\&#39;</span><span class="s1">t&#39;</span>  <span class="c1"># use \&#39; to escape the single quote...</span>
+<span class="s2">&quot;doesn&#39;t&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;doesn&#39;t&quot;</span>  <span class="c1"># ...or use double quotes instead</span>
+<span class="s2">&quot;doesn&#39;t&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;&quot;Yes,&quot; he said.&#39;</span>
+<span class="s1">&#39;&quot;Yes,&quot; he said.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">Yes,</span><span class="se">\&quot;</span><span class="s2"> he said.&quot;</span>
+<span class="s1">&#39;&quot;Yes,&quot; he said.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; she said.&#39;</span>
+<span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; she said.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; she said.&#39;</span>
+<span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; she said.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; she said.&#39;</span><span class="p">)</span>
+<span class="s2">&quot;Isn&#39;t,&quot;</span> <span class="n">she</span> <span class="n">said</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;First line.</span><span class="se">\n</span><span class="s1">Second line.&#39;</span>  <span class="c1"># \n means newline</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span>  <span class="c1"># without print(), \n is included in the output</span>
+<span class="s1">&#39;First line.</span><span class="se">\n</span><span class="s1">Second line.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># with print(), \n produces a new line</span>
+<span class="n">First</span> <span class="n">line</span><span class="o">.</span>
+<span class="n">Second</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;C:\some</span><span class="se">\n</span><span class="s1">ame&#39;</span><span class="p">)</span>  <span class="c1"># here \n means newline!</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">some</span>
+<span class="n">ame</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\some\name&#39;</span><span class="p">)</span>  <span class="c1"># note the r before the quote</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">some</span>\<span class="n">name</span>
+</pre></div>
+
+
+<p>2.转义可以用\或者在第一个引号前加r。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;C:\some</span><span class="se">\n</span><span class="s1">ame&#39;</span><span class="p">)</span>  <span class="c1"># here \n means newline!</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">some</span>
+<span class="n">ame</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\some\name&#39;</span><span class="p">)</span>  <span class="c1"># note the r before the quote</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">some</span>\<span class="n">name</span>
+</pre></div>
+
+
+<p>3.三引号："""...""" 或者 '''...'''。行尾换行符会被自动包含到字符串中，但是可以在行尾加上 \ 来避免这个行为。(不加\会多出一空行)</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Usage: thingy [OPTIONS]</span>
+<span class="s2">     -h                        Display this usage message</span>
+<span class="s2">     -H hostname               Hostname to connect to</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>输出结果如下：</p>
+<div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">thingy</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span>
+     <span class="o">-</span><span class="n">h</span>                        <span class="n">Display</span> <span class="n">this</span> <span class="n">usage</span> <span class="n">message</span>
+     <span class="o">-</span><span class="n">H</span> <span class="n">hostname</span>               <span class="n">Hostname</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span><span class="p">)</span>
+</pre></div>
+
+
+<p>4.字符串可以由 + 操作符连接(粘到一起)，可以由 * 表示重复:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="c1"># 3 times &#39;un&#39;, followed by &#39;ium&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="s1">&#39;un&#39;</span> <span class="o">+</span> <span class="s1">&#39;ium&#39;</span>
+<span class="s1">&#39;unununium&#39;</span>
+</pre></div>
+
+
+<p>5.相邻的两个字符串文本自动连接在一起。:</p>
+<div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Put several strings within parentheses &#39;</span>
+        <span class="s1">&#39;to have them joined together.&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="err">结果是</span>
+<span class="n">Put</span> <span class="n">several</span> <span class="n">strings</span> <span class="n">within</span> <span class="n">parentheses</span> <span class="n">to</span> <span class="n">have</span> <span class="n">them</span> <span class="n">joined</span> <span class="n">together</span><span class="o">.</span>
+</pre></div>
+
+
+<p>6.字符串也可以被截取(检索)。类似于 C ，字符串的第一个字符索引为 0 。<em>Python没有单独的字符类型；一个字符就是一个简单的长度为1的字符串。</em><br>
+索引是负数，从尾开计数。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># character in position 0</span>
+<span class="s1">&#39;P&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># character in position 5</span>
+<span class="s1">&#39;n&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># last character</span>
+<span class="s1">&#39;n&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># second-last character</span>
+<span class="s1">&#39;o&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="s1">&#39;P&#39;</span>
+</pre></div>
+
+
+<p>7.切片。省略第一个索引表示从头开始，省略第二个索引表示到尾。<br>
+对于非负索引，如果上下都在边界内，切片长度就是两个索引之差。例如，word[1:3] 是 2。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># characters from position 0 (included) to 2 (excluded)</span>
+<span class="s1">&#39;Py&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># characters from position 2 (included) to 5 (excluded)</span>
+<span class="s1">&#39;tho&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># character from the beginning to position 2 (excluded)</span>
+<span class="s1">&#39;Py&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>  <span class="c1"># characters from position 4 (included) to the end</span>
+<span class="s1">&#39;on&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># characters from the second-last (included) to the end</span>
+<span class="s1">&#39;on&#39;</span>
+ <span class="o">+---+---+---+---+---+---+</span>
+ <span class="o">|</span> <span class="n">P</span> <span class="o">|</span> <span class="n">y</span> <span class="o">|</span> <span class="n">t</span> <span class="o">|</span> <span class="n">h</span> <span class="o">|</span> <span class="n">o</span> <span class="o">|</span> <span class="n">n</span> <span class="o">|</span>
+ <span class="o">+---+---+---+---+---+---+</span>
+   <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>
+  <span class="o">-</span><span class="mi">6</span>  <span class="o">-</span><span class="mi">5</span>  <span class="o">-</span><span class="mi">4</span>  <span class="o">-</span><span class="mi">3</span>  <span class="o">-</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>8.Python 能够优雅地处理那些没有意义的切片索引：一个过大的索引值(即下标值大于字符串实际长度)将被字符串实际长度所代替，当上边界比下边界大时(即切片左值大于右值)就返回空字符串:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">42</span><span class="p">]</span>
+<span class="s1">&#39;on&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">42</span><span class="p">:]</span>
+<span class="s1">&#39;&#39;</span>
+</pre></div>
+
+
+<p>9.ython字符串不可以被更改 — 它们是 不可变的 。因此，赋值给字符串索引的位置会导致错误:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span>
+  <span class="o">...</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="s1">&#39;py&#39;</span>
+  <span class="o">...</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre></div>
+
+
+<p>10.内置函数 len() 返回字符串长度<br>
+  split()方法也可以切分字符串，返回一个列表。参数中的str是分隔符，默认是空格。  </p>
+<div class="highlight"><pre><span></span>  <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+</pre></div>
+
+
+<p>11.See also</p>
+<blockquote>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#textseq">Text Sequence Type — str</a>
+字符串是 序列类型 的例子，它们支持这种类型共同的操作。
+<a href="https://docs.python.org/3/library/stdtypes.html#string-methods">String Methods</a><br>
+字符串和Unicode字符串都支持大量的方法用于基本的转换和查找。<br>
+<a href="https://docs.python.org/3/library/string.html#string-formatting">String Formatting</a><br>
+这里描述了使用 str.format() 进行字符串格式化的信息。<br>
+<a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">String Formatting Operations</a><br>
+这里描述了旧式的字符串格式化操作，它们在字符串和Unicode字符串是 % 操作符的左操作数时调用。</p>
+</blockquote>
+<p>13.其他可以参考这<a href="http://www.pythondoc.com/pythontutorial3/index.html">Python tutorial</a></p>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./4.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20%E5%B0%86%20Python%20%E5%BD%93%E5%81%9A%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./4.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20%E5%B0%86%20Python%20%E5%BD%93%E5%81%9A%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./4.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>

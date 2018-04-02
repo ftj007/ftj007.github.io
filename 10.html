@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Python 文件操作 &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="Python" />
+    <meta property="article:published_time" content="2018-01-11" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Python 文件操作"/>
+    <meta property="og:description" content="Python学习"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./10.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Python 文件操作">
+    <meta name="twitter:description" content="Python学习">
+    <meta name="twitter:url" content="./10.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>Python 文件操作</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2018-01-11T20:26:00+08:00">周四 11 一月 2018</time> in <a href="./category/python.html" title="All articles in category Python">Python</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/python.html" title="All articles with Python tag">#Python</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <p>对文件的操作分三步：</p>
+<ol>
+<li>
+<p>打开文件获取文件的句柄，句柄就理解为这个文件</p>
+</li>
+<li>
+<p>通过文件句柄操作文件</p>
+</li>
+<li>
+<p>关闭文件。</p>
+</li>
+<li>
+<p>打开文件  </p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>只读模式（默认）</td>
+<td></td>
+</tr>
+<tr>
+<td>w</td>
+<td>只写模式。</td>
+<td>不可读；文件不存在则创建；存在则删除内容（每次打开都删除)</td>
+</tr>
+<tr>
+<td>a</td>
+<td>追加模式。</td>
+<td>不可读； 不存在则创建；存在则只追加内容</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>可读,可写,可追加</td>
+<td>如果打开的文件不存在的话，会报错</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>写读模式。</td>
+<td>使用w+的话，已经存在的文件内容会被清空，可以读到已经写的文件内容</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>追加读写模式。</td>
+<td>不存在则创建；存在则只追加内容</td>
+</tr>
+<tr>
+<td>rb</td>
+<td>二进制读。</td>
+<td>从文件读出和向文件写入的字符串会被特定的编码方式（默认是UTF-8）编码</td>
+</tr>
+<tr>
+<td>wb</td>
+<td>二进制写式。</td>
+<td></td>
+</tr>
+<tr>
+<td>ab</td>
+<td>二进制。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在文本模式下，读取时默认会将平台有关的行结束符（Unix上是 \n , Windows上是 \r\n）转换为 \n。在文本模式下写入时，默认会将出现的 \n 转换成平台有关的行结束符。这种暗地里的修改对 ASCII 文本文件没有问题，但会损坏 JPEG 或 EXE 这样的二进制文件中的数据。使用二进制模式读写此类文件时要特别小心。</p>
+</blockquote>
+<p>文件file.txt：</p>
+<div class="highlight"><pre><span></span>    七绝 · 秋怀(凤顶格)
+
+紫光辉映水含烟，山沐金风柳拂弦。
+才见飞鹰飘绝顶，子吟诗赋向青天。
+
+    七绝 · 春情(燕颔格)新韵
+气紫桃红碧水连，青山雄伟鸟盘旋。
+高才陶醉春风里，携子吟诗不愿还。
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+        <span class="n">frist_line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="c1">#获取文件的第一行内容，返回的是一个list</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">frist_line</span><span class="p">)</span><span class="c1">#打印第一行</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="c1">#获取除了第一行剩下的所有文件内容</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="c1">#关闭文件 </span>
+<span class="c1">#这种方式打开的文件不会自己关闭一定要close()     </span>
+
+<span class="err">所以更好的方法是使用</span><span class="k">with</span><span class="p">,</span><span class="err">文件使用完后自动关闭。</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">first_line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">first_line</span><span class="p">)</span>
+</pre></div>
+
+
+<ul>
+<li>具体操作方法</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r+&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="c1">#encoding参数可以指定打开的文件的编码</span>
+
+            <span class="n">f</span><span class="o">.</span><span class="n">readable</span><span class="p">()</span><span class="c1">#判断文件是否可读</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">writable</span><span class="p">()</span><span class="c1">#判断文件是否可写</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">encoding</span><span class="c1">#打印文件的编码</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="c1">#读取所有内容，大文件时不要用，因为会把文件内容全部到内存中，内存不够的话，会把内存撑爆</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+            <span class="c1">#读取所有文件内容，返回一个list，元素是每行的数据，大文件时不要用，因为会把文件内容都读到内存中，内存不够的话，会把内存撑爆</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>  
+            <span class="c1">#读一行,字符串结尾会自动加上一个换行符（ \n ），只有当文件最后一行没有以换行符结尾时，这一操作才会被忽略。这样返回值就不会有混淆，如果 f.readline() 返回一个空字符串，那就表示到达了文件末尾，如果是一个空行，就会描述为 &#39;\n&#39;，一个只包含换行符的字符串:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="c1">#获取当前文件的指针指向</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">offset</span><span class="err">，</span><span class="n">from_what</span><span class="p">)</span><span class="c1">#把当前文件指针指向哪，0是开头，1表示以现在位置为原点，2表示文件末尾。a或a+打开文件文件都会指向文件末尾</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span><span class="c1">#写入内容,只能写string，其他非字符串内容要先转字符串</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">([</span><span class="s1">&#39;爱情证书&#39;</span><span class="p">,</span><span class="s1">&#39;孙燕姿&#39;</span><span class="p">])</span><span class="c1">#将一个列表写入文件中，writelines直接写可迭代的类型，效率高。</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">fulsh</span><span class="p">()</span><span class="c1">#写入文件后，立即从内存中把数据写到磁盘中</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">truncate</span><span class="p">()</span><span class="c1">#清空文件内容</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="err">关闭文件</span>
+</pre></div>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./10.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./10.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./10.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>高性能mysql学习 &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="MySQL" />
+    <meta property="article:published_time" content="2018-03-20" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="高性能mysql学习"/>
+    <meta property="og:description" content="性能测试"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./22.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="高性能mysql学习">
+    <meta name="twitter:description" content="性能测试">
+    <meta name="twitter:url" content="./22.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>高性能mysql学习</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2018-03-20T22:26:00+08:00">周二 20 三月 2018</time> in <a href="./category/mysql.html" title="All articles in category MySQL">MySQL</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/mysql.html" title="All articles with Mysql tag">#MySQL</a>
+            </span>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/xing-neng-ce-shi.html" title="All articles with 性能测试 tag">#性能测试</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <h1>第五章 创建高性能索引</h1>
+<h2>1.慢sql分析</h2>
+<p>explain 分析一下sql </p>
+<ul>
+<li>type列  </li>
+<li>ALL<br>
+ 全表扫描，说明性能不好。如果使用limit就不会</li>
+<li>index<br>
+    跟全表扫描一样，只是按照索引顺序进行扫描表,不需要排序。和Extra字段的using index一起说明在使用覆盖扫描。</li>
+<li>
+<p>range
+    范围扫描就是有限制的<strong>索引扫</strong>描,带有between或者&lt;，&gt;。
+    &gt;高性能MySQL中说in()和between都是显示range。对于范围条件查询MySQL无法使用范围列后面的其他索引了，in()相当于<strong>多个等值条件查询</strong>，没这个限制。我们总是尽可能让MySQL使用更多的索引列，因为查询只能使用索引的最左前缀，直到遇到第一个范围条件列。  </p>
+<p>不是很理解。对于范围条件MySQL只能使用一个索引列，而且位于这个列后的条件都不会去使用索引，就是在建组合索引的时候<strong>将范围条件列放在组合索引最后，而且如果有多个范围条件MySQL也只会使用其中一个条件列作为索引，而不会都使用</strong>。</p>
+</li>
+<li>
+<p>possible_key  <br>
+    查询可以使用的索引</p>
+</li>
+<li>
+<p>key列<br>
+    使用的索引</p>
+</li>
+<li>
+<p>rows列
+    MySQL预估查询的行数。</p>
+</li>
+<li>
+<p>Extra 字段</p>
+</li>
+<li>
+<p>Using index
+"覆盖索引扫描",表示查询在索引树中就可查找所需数据,不用扫描表数据文件,往往说明性能不错。<br>
+这是MySQL服务层完成的，不需要存储引擎回表查数据。</p>
+</li>
+<li>
+<p>Using where<br>
+MySQL服务器将存储引擎返回服务层以后再应用WHERE条件过滤，应该是根据索引查出数据在使用where条件过滤（不是很明白）。 回表。 
+高性能mysql中说using where 暗示着查询可收益与不同的索引。</p>
+</li>
+<li>
+<p>Using temporary
+MySQL 在对查询结果排序时会使用临时表</p>
+</li>
+<li>
+<p>Using filesort
+MySQL会对结果使用一个外部索引排序，而不是按索引次序从表里读行。可能在内存完成，也可能在磁盘完成。explain看不出来。</p>
+</li>
+<li>
+<p>Using index condition 
+5.6版本后加入的新特性
+会先条件过滤索引，过滤完索引后找到所有符合索引条件的数据行，随后用 WHERE 子句中的其他条件去过滤这些数据行；<br>
+相比于using where 访问表的数据变少了（个人理解）。具体看下图：</p>
+</li>
+</ul>
+<p><img alt="image" src="https://sfault-image.b0.upaiyun.com/151/052/151052557-567c19feb3bbe"></p>
+<p>show processlist,看一下时间主要消耗在哪。</p>
+<div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;%profil%&#39;</span><span class="p">;</span> 
+
+<span class="k">set</span> <span class="n">profiling</span><span class="o">=</span><span class="k">on</span><span class="p">;</span><span class="o">#</span><span class="err">将</span><span class="n">profiling打开</span>
+
+<span class="k">SHOW</span> <span class="n">profiles</span>   <span class="o">#</span><span class="err">查看执行的</span><span class="k">sql</span>
+
+<span class="k">SHOW</span> <span class="n">profile</span> <span class="k">FOR</span> <span class="n">QUERY</span> <span class="mi">127</span> <span class="o">#</span><span class="err">根据结果看时间主要消耗在什么地方，并进行优化</span>
+
+<span class="k">SHOW</span> <span class="n">profile</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">block</span> <span class="n">io</span> <span class="k">FOR</span> <span class="n">QUERY</span> <span class="mi">127</span><span class="p">;</span>
+</pre></div>
+
+
+<h2>2.索引类型</h2>
+<div class="highlight"><pre><span></span>一般都只B-Tree索引，InnoDB使用的是B+Tree。
+B+Tree 每个叶子页都有指向下一个叶子的指针。
+使用B-Tree索引意味着值都是按照顺序存储的，所以排序什么的最好走索引，性能会提高很多。
+</pre></div>
+
+
+<h2>3.mysql性能优化点记录</h2>
+<ul>
+<li>
+<p>优化数据访问</p>
+<blockquote>
+<p>查询性能低下的最基本原因就是访问了太多数据。一些查询不可避免的要筛选大量的数据，单这并不常见。大部分性能欠佳的查询都可以用减少数据访问的方式进行修改。在分析性能欠佳的查询的时候，下面两个步骤比较有用：<br>
+  1.应用程序是否在获取超过需要的数据。这通常是访问了过多的行和列。<br>
+  2.mysql服务器是否分析了超过需要的行。</p>
+</blockquote>
+<p><img alt="image" src="http://images0.cnblogs.com/blog2015/646194/201507/302344066105481.png"></p>
+</li>
+</ul>
+<h2>4.高性能索引策略</h2>
+<div class="highlight"><pre><span></span>1.where 条件里不要出现表达式；
+
+2.索引选择性越高越好（过虑性），就是指不重复的索引值（基数 show index 中的caradinality）
+和表记录总数的比值。
+select（select count（distinct 列） from 表）/（select count（列） from 表）
+越接近1越好。不重复的值越多越好。
+
+3.最左前缀（没用过）
+select（select count（distinct left(列,4)） from 表）/（select count（列） from 表）
+select（select count（distinct left(列,5)） from 表）/（select count（列） from 表）
+可以得出不同前缀长度的选择性，与2中所得选择性越接近越好。
+
+4.ORDER BY
+1、ORDER BY的索引优化。如果一个SQL语句形如：
+SELECT [column1],[column2],…. FROM [TABLE] ORDER BY [sort];
+在[sort]这个栏位上建立索引就可以实现利用索引进行order by 优化。
+
+2、WHERE + ORDER BY的索引优化，形如：
+SELECT [column1],[column2],…. FROM [TABLE] WHERE [columnX] = [value] ORDER BY [sort];
+建立一个联合索引(columnX,sort)来实现order by 优化。
+</pre></div>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./22.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20%E9%AB%98%E6%80%A7%E8%83%BDmysql%E5%AD%A6%E4%B9%A0" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./22.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20%E9%AB%98%E6%80%A7%E8%83%BDmysql%E5%AD%A6%E4%B9%A0" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./22.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>

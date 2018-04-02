@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Python hashlib模块 &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="Python" />
+    <meta property="article:published_time" content="2018-02-03" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Python hashlib模块"/>
+    <meta property="og:description" content="Python学习"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./20.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Python hashlib模块">
+    <meta name="twitter:description" content="Python学习">
+    <meta name="twitter:url" content="./20.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>Python hashlib模块</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2018-02-03T22:26:00+08:00">周六 03 二月 2018</time> in <a href="./category/python.html" title="All articles in category Python">Python</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/python.html" title="All articles with Python tag">#Python</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">md5</span><span class="p">,</span> <span class="n">sha1</span><span class="p">,</span> <span class="n">sha224</span><span class="p">,</span> <span class="n">sha256</span><span class="p">,</span> <span class="n">sha384</span><span class="p">,</span> <span class="n">sha512</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">hash_funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md5</span><span class="p">,</span> <span class="n">sha1</span><span class="p">,</span> <span class="n">sha224</span><span class="p">,</span> <span class="n">sha256</span><span class="p">,</span> <span class="n">sha384</span><span class="p">,</span> <span class="n">sha512</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">hash_show</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">hash_funcs</span><span class="p">:</span>
+        <span class="n">s_hash_obj</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">s_hash_hex</span> <span class="o">=</span> <span class="n">s_hash_obj</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s_hash_obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">s_hash_hex</span><span class="p">,</span>  <span class="nb">len</span><span class="p">(</span><span class="n">s_hash_hex</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;hello python&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">hash_show</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span>
+
+
+<span class="p">[(</span><span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="s1">&#39;e53024684c9be1dd3f6114ecc8bbdddc&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="s1">&#39;1d1244e0f2efb8c94ec7a0814568216637b329ca&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;sha224&#39;</span><span class="p">,</span> <span class="s1">&#39;7f78ad20eff5afc21166e6a5e22962a2819bd28d335ba95ff414b3f5&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;sha256&#39;</span><span class="p">,</span>
+<span class="s1">&#39;373a23512f9531ad49ec6ad43ecdda58df01e59d9ec5812d601fd05cc53345d3&#39;</span><span class="p">,</span>
+  <span class="mi">64</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;sha384&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;eaf44aabb38c34ff948e714b9c3c08f3fed996d74fc9f1225d7368ccb386465df272e55912041921eddf13b51aff833c&#39;</span><span class="p">,</span>
+  <span class="mi">96</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;sha512&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;e8b430766d68a185db5de94b8cf811761db8dd875cf3baae24c6939b0111d19143da1c51294a2aff6adfb46f4687f78ffffa17f2189ca2c0a03a19d4d6bd0d8c&#39;</span><span class="p">,</span>
+  <span class="mi">128</span><span class="p">)]</span>
+</pre></div>
+
+
+<p>md5 的使用示例
+ ```python
+from hashlib import md5</p>
+<p>m1 = hashlib.md5()  # 构造hash对象
+byte_st = 'hellow'.encode()  # 必须转成bety类型,二进制
+byte_st2 = 'python'.encode()
+m1.update(byte_st)  # 加密
+m1.update(' ')
+m1.update(byte_st2)</p>
+<p>byte_st3 = 'hello python'.encode()
+m2 = hashlib.md5(byte_st3)</p>
+<p>print m1.hexdigest() == m2.hexdigest()    # 两种方式的效果相同，加密后的结果</p>
+<p>def md5_password(st:str):  # 限定了入参的类型，只能为string类型
+    bytes_st = st.encode()  # 转成二进制类型
+    m = hashlib.md5(bytes_st)  # 加密
+    return m.hexdigest()  # 返回加密后的结果
+ ```  <br>
+ md5加密是不可逆的，不能被解密的<br>
+ 解密是通过撞库实现的</p>
+<p>base64加密
+ ```python
+import base64
+s='hahaha'
+byte_s = s.encode() #字符串变成二进制
+res = base64.b64encode(byte_s) #base64编码
+print(res.decode()) #把bytes转成字符串。</p>
+<h1>解密</h1>
+<p>jie_mi_res = base64.b64decode(res.decode()) #base64编码
+print(jie_mi_res.decode())
+ ```</p>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./20.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20hashlib%E6%A8%A1%E5%9D%97" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./20.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20hashlib%E6%A8%A1%E5%9D%97" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./20.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>

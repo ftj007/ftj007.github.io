@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Python time模块 &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="Python" />
+    <meta property="article:published_time" content="2018-01-18" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Python time模块"/>
+    <meta property="og:description" content="Python学习"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./13.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Python time模块">
+    <meta name="twitter:description" content="Python学习">
+    <meta name="twitter:url" content="./13.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>Python time模块</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2018-01-18T22:26:00+08:00">周四 18 一月 2018</time> in <a href="./category/python.html" title="All articles in category Python">Python</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/python.html" title="All articles with Python tag">#Python</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"># 1、格式化好的时间 2018-1-14 16:42</span>
+<span class="sd"># 2、时间戳 是从unix元年到现在所有的秒数</span>
+<span class="sd"># 3、时间元组</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1">#当前时间戳</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span><span class="c1">#浮点型</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+
+<span class="c1">#标准时区的时间元祖，接受时间戳参数，可以返回时间元祖</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())</span>
+<span class="c1">#本地时区当前时间元祖，接受时间戳参数，可以返回时间元祖</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">t1</span><span class="p">))</span>
+
+<span class="c1">#当前时间格式化输出，可以接受时间元祖参数，返回格式化的时间，必须要有格式化参数</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">))</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">,</span><span class="n">t1</span><span class="p">))</span>
+
+<span class="c1">#将格式化的时间转成时间元祖</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">))</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">))</span>
+
+<span class="c1">#将时间元祖转成时间戳，浮点型</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">t1</span><span class="p">))</span>
+
+<span class="c1">#已经格式化好的当前时间</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">(</span><span class="n">t1</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">timestampToStr</span><span class="p">(</span><span class="n">time_strmp</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">%H%M%S&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;时间戳转格式化好的时间&quot;&quot;&quot;</span>
+    <span class="n">cur_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time_strmp</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">cur_time</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">def</span> <span class="nf">strToTimestamp</span><span class="p">(</span><span class="n">time_st</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">%H%M%S&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;这个函数是格式化好的时间，转时间戳的&quot;&quot;&quot;</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">time_st</span><span class="p">,</span><span class="n">format</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./13.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20time%E6%A8%A1%E5%9D%97" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./13.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20time%E6%A8%A1%E5%9D%97" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./13.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>

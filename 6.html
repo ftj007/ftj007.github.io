@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Python 循环 &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="Python" />
+    <meta property="article:published_time" content="2017-12-23" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Python 循环"/>
+    <meta property="og:description" content="Python学习"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./6.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Python 循环">
+    <meta name="twitter:description" content="Python学习">
+    <meta name="twitter:url" content="./6.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>Python 循环</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2017-12-23T10:20:00+08:00">周六 23 十二月 2017</time> in <a href="./category/python.html" title="All articles in category Python">Python</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/python.html" title="All articles with Python tag">#Python</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <p>1.for循环
+for ... in ...   依次把list或tuple中的每个元素赋值给for后面的变量 </p>
+<div class="highlight"><pre><span></span><span class="c1">#输出0到9，for x in ...循环就是把每个元素代入变量i，然后执行缩进块的语句。</span>
+<span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>    <span class="c1">#&#39;:&#39; 后面必须要有执行程序不然报错，如果没有可以写pass</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+
+
+<p>2.while循环
+只要条件为true，就一直循环。所以while需要计数器，否则会死循环。或者也可以通过break跳出循环。</p>
+<div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;fff&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="mi">123456</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">while</span> <span class="n">count</span><span class="p">:</span> <span class="c1">#条件为真执行循环体</span>
+    <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1">#计数器的作用</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入用户名:&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>  <span class="c1">#如果name为空返回一个空列表</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;用户名不能为空！您还有</span><span class="si">%s</span><span class="s1">次机会，请再次输入：&#39;</span> <span class="o">%</span> <span class="n">count</span><span class="p">)</span>
+        <span class="k">continue</span>  <span class="c1">#跳过当前的这次循环，直接开始下一次循环</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pwd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入密码：&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">username</span> <span class="ow">and</span> <span class="n">pwd</span> <span class="o">==</span> <span class="n">password</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;登录成功！&#39;</span><span class="p">)</span>
+        <span class="k">break</span> <span class="c1">#结束整个循环 break也可以改为count = 0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;用户名/密码错误，您还有</span><span class="si">%s</span><span class="s1">次机会&#39;</span> <span class="o">%</span> <span class="n">count</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;密码错误超过三次！&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>3循环中的 else 子句（第一次看见）
+循环可以有一个 else 子句；它在循环迭代完整个列表（对于 for ）或执行条件为 false （对于 while ）时执行，但循环被 break 中止的情况下不会执行。以下搜索素数的示例程序演示了这个子句:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="o">...</span>             <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;equals&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">//</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...</span>             <span class="k">break</span> <span class="c1"># 外部for循环继续循环</span>
+<span class="o">...</span>     <span class="k">else</span><span class="p">:</span>
+<span class="o">...</span>         <span class="c1"># loop fell through without finding a factor</span>
+<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;is a prime number&#39;</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="mi">2</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">prime</span> <span class="n">number</span>
+<span class="mi">3</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">prime</span> <span class="n">number</span>
+<span class="mi">4</span> <span class="n">equals</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="mi">5</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">prime</span> <span class="n">number</span>
+<span class="mi">6</span> <span class="n">equals</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="mi">7</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">prime</span> <span class="n">number</span>
+<span class="mi">8</span> <span class="n">equals</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="mi">9</span> <span class="n">equals</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span>
+</pre></div>
+
+
+<p>类似的还有try...else...</p>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./6.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20%E5%BE%AA%E7%8E%AF" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./6.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20%E5%BE%AA%E7%8E%AF" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./6.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>

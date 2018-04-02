@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Python tuple &ndash; 冯天骄的博客</title>
+
+    <!-- Meta -->
+    <meta name="description" content="冯天骄的博客 &ndash; ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Social -->
+    <meta property="article:author" content="冯天骄" />
+    <meta property="article:section" content="Python" />
+    <meta property="article:published_time" content="2018-01-01" />
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Python tuple"/>
+    <meta property="og:description" content="Python学习"/>
+    <meta property="og:site_name" content="冯天骄的博客" />
+    <meta property="og:url" content="./9.html"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Python tuple">
+    <meta name="twitter:description" content="Python学习">
+    <meta name="twitter:url" content="./9.html">
+
+    <!-- Feed -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,bold">
+    <link rel="stylesheet" type="text/css" href="./theme/css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/jqcloud.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./theme/css/pygments-highlight-github.css">
+    <link rel="stylesheet" type="text/css" href="./css/*.css">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./theme/js/jqcloud.min.js"></script>
+  </head>
+
+  <body>
+    <div class="w3-row w3-card w3-white">
+      <header id="header">
+        <a href="." id="header-logo" title="Home">冯</a>
+        <nav id="header-menu">
+          <ul>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" ><a href="./category/mysql.html">MySQL</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green" style="font-weight: bold;"><a href="./category/python.html">Python</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/categories.html">CATEGORY</a></li>
+            <li class="w3-bottombar w3-border-white w3-hover-border-green"><a href="/archives.html">ARCHIVE</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+
+
+    <br><br><br>
+
+    <article>
+      <header class="w3-container col-main">
+        <h1>Python tuple</h1>
+        <div class="post-info">
+          <div class="w3-opacity w3-margin-right w3-margin-bottom" style="flex-grow: 1;">
+            <span><time datetime="2018-01-01T20:26:00+08:00">周一 01 一月 2018</time> in <a href="./category/python.html" title="All articles in category Python">Python</a></span>
+          </div>
+          <div>
+            <span class="w3-tag w3-light-grey w3-text-green w3-hover-green">
+              <a href="./tag/python.html" title="All articles with Python tag">#Python</a>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <br>
+
+
+      <div class="col-main w3-container">
+        <section id="content">
+          <blockquote>
+<p>在Python中，最基本的数据结构是序列（sequence）。 <br>
+序列中的每个元素被分配一个序号——即元素的位置，也称为索引。第一个索引是 0，第二个则是 1，以此类推。序列中的最后一个元素标记为 -1，倒数第二个元素为 -2，一次类推。<br>
+Python包含 6 中内建的序列，包括列表、元组、字符串、Unicode字符串、buffer对象和xrange对象。</p>
+</blockquote>
+<p>所以列表、元祖、字符串有很多相似的方法。</p>
+<p>所有序列类型都可以进行某些特定的操作。这些操作包括：索引（indexing）、分片（sliceing）、加（adding）、乘（multiplying）以及检查某个元素是否属于序列的成员（成员资格）。除此之外，Python还有计算序列长度、找出最大元素和最小元素的内建函数。</p>
+<p>列表和元组的主要区别在于：列表可以修改，元组(不可变)不能。元祖一旦初始化就不能改变了。</p>
+<p>一个元组由数个逗号分隔的值组成，例如:   </p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">12345</span><span class="p">,</span> <span class="mi">54321</span><span class="p">,</span> <span class="s1">&#39;hello!&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="mi">12345</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+<span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">54321</span><span class="p">,</span> <span class="s1">&#39;hello!&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Tuples 可以嵌套:</span>
+<span class="o">...</span> <span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">u</span>
+<span class="p">((</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">54321</span><span class="p">,</span> <span class="s1">&#39;hello!&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Tuples 不可以改变:</span>
+<span class="o">...</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">88888</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># 但他们可以包含可变对象，列表里的内容是可以改变的:</span>
+<span class="o">...</span> <span class="n">v</span> <span class="o">=</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">v</span>
+<span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+
+<p>元祖没有append()，insert()这样的方法。其他获取元素的方法和list是一样的，可以正常地使用索引，但不能赋值成另外的元素。</p>
+<p>廖雪峰的Python教程中<br>
+tuple的陷阱：当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<p>如果要定义一个空的tuple，可以写成()：</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+<span class="p">()</span>
+</pre></div>
+
+
+<p>但是，要定义一个只有1个元素的tuple，如果你这么定义：</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+<span class="mi">1</span>
+</pre></div>
+
+
+<p><strong>定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。</strong></p>
+<p><strong>所以，只有1个元素的tuple定义时必须加一个逗号,，来消除歧义：</strong></p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+</pre></div>
+
+
+<p>Python在显示只有1个元素的tuple时，也会加一个逗号,，以免你误解成数学计算意义上的括号。</p>
+<p>最后来看一个“可变的”tuple：</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+<span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>这个tuple定义的时候有3个元素，分别是'a'，'b'和一个list。不是说tuple一旦定义后就不可变了吗？怎么后来又变了？  </p>
+<p><img alt="image" src="https://cdn.liaoxuefeng.com/cdn/files/attachments/001387269705541ad608276b6f7426ca59b8c2b19947243000/0"></p>
+<p>当我们把list的元素'A'和'B'修改为'X'和'Y'后，tuple变为：  </p>
+<p><img alt="image" src="https://cdn.liaoxuefeng.com/cdn/files/attachments/001387269768140c7d5ca167342402989dfc75343fe900b000/0"></p>
+<p>表面上看，tuple的元素确实变了，但其实变的不是tuple的元素，而是list的元素。tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向'a'，就不能改成指向'b'，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！</p>
+<p>理解了“指向不变”后，要创建一个内容也不变的tuple怎么做？那就必须保证tuple的每一个元素本身也不能变。</p>
+        </section>
+
+        <br><br><br>
+
+        <footer>
+          <div class="adjust-width">
+            <div id="author-block" class="w3-light-grey w3-border">
+              <div id="author-info">
+                <a href="http://fffeng.xin"><img style="width: 60px; height: 60px;" src="http://archives.html" onerror="this.src='theme/images/avatar.png'" alt="Avatar"></a>
+                <div style="margin-left: 20px; margin-top: 15px;">
+                  <a href="http://fffeng.xin"><span id="author-name" class="w3-hover-text-dark-grey">冯天骄</span></a>
+                  <p id="author-story">Hello world! I’m ftj. I like coffee, birds and Python.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+          <p style="font-size:10pt; font-style: italic;">Did you like this article? Share it with your friends!</p>
+          <div id="share" class="share">
+            <a href="http://www.facebook.com/sharer.php?u=./9.html&amp;t=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20tuple" target="_blank" class="w3-btn w3-indigo">
+              <i class="fa fa-facebook"></i> <span>Facebook</span>
+            </a>
+            <a href="http://twitter.com/share?url=./9.html&amp;text=%E5%86%AF%E5%A4%A9%E9%AA%84%E7%9A%84%E5%8D%9A%E5%AE%A2%3A%20Python%20tuple" target="_blank" class="w3-btn w3-blue">
+              <i class="fa fa-twitter"></i> <span>Twitter</span>
+            </a>
+            <a href="https://plus.google.com/share?url=./9.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="w3-btn w3-red">
+              <i class="fa fa-google-plus"></i> <span>Google</span>
+            </a>
+          </div>
+
+          <br><br><br>
+
+
+
+        </footer>
+      </div>
+    </article>
+
+
+    <footer id="footer">
+      <div id="footer-copyright" class="w3-center w3-small w3-text-grey w3-padding-48">
+        <span>
+          &copy;
+          2010&dash;2018          冯天骄
+        </span>
+      </div>
+    </footer>
+
+
+
+  </body>
+</html>
